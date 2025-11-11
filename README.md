@@ -24,7 +24,7 @@ The MemOS plugin allows Dify applications to connect and interact with a user's 
 To use this plugin, you need to provide the following credentials when adding it in Dify, corresponding to **your** MemOS instance:
 
 1.  **MemOS URL:** The endpoint URL of **your** MemOS instance (e.g., `https://memos.memtensor.cn/api/openmem/v1`).
-2.  **MemOS API Key:** **Your** API key for authenticating with **your** MemOS instance.
+2.  **MemOS API Key:** **Your** API key for authenticating with **your** MemOS instance.(Format: Must be in the format Token mpg-**************. The prefix "Token" is required.)
 
 You can obtain these from your [MemOS API Console](https://memos-dashboard.openmem.net/apikeys/) or configuration.
 ![MemOS API console](/_assets/memos_console.svg)
