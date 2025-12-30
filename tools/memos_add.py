@@ -34,7 +34,13 @@ class MemosAdd(Tool):
         if conversation_id is None:
             conversation_id = conversation_id_new
 
-        messages= json.loads(tool_parameters["messages"])
+        try:
+            messages = json.loads(tool_parameters["messages"])
+            if not isinstance(messages, list):
+                 raise ValueError("Not a list")
+        except (json.JSONDecodeError, ValueError, TypeError):
+             messages = [{"role": "user", "content": str(tool_parameters["messages"])}]
+
         for item in messages:
             if "chat_time" not in item:
                 messages = [{**item, "chat_time": iso_date} for item in messages]
@@ -47,6 +53,7 @@ class MemosAdd(Tool):
         data = {
                 "user_id":user_id,
                 "conversation_id":conversation_id,
+                "source": "Dify",
                 "messages": messages
                 }
 

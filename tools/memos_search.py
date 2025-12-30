@@ -19,7 +19,8 @@ class MemosSearch(Tool):
         data = {
                 "user_id":user_id,
                 "query":query,
-                "memory_limit_number": memory_limit_number
+                "memory_limit_number": memory_limit_number,
+                "source":"Dify"
                 }
         headers = {
             "Authorization": self.runtime.credentials["memos_api_key"]  
