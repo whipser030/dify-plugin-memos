@@ -1,0 +1,25 @@
+.output
+.data
+.cache
+.DS_Store
+.keep
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.idea
+.vscode
+*.zip
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Web extension build artifacts
+web-ext-artifacts/
+extension/common/*.d.ts
