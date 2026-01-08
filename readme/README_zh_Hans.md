@@ -1,52 +1,40 @@
-# memos
+# MemOS
 
 
-**仓库:** [dify-plugin-memos](https://github.com/whipser030/dify-plugin-memos)
+**仓库:** [MemOS](https://github.com/whipser030/dify-plugin-memos)
 
-**作者:** memtensor
+**作者:** MemTensor
 
-**版本:** 0.0.2
+**版本:** 0.0.3
 
 **类型:** 工具
 
 ## 描述
 
-MemOS 插件允许 Dify 应用程序连接并与用户的 **自托管或托管的 MemOS 实例** 进行交互。MemOS 是一个专为 AI 应用程序设计的开源长期记忆插件。它提供了强大的工具来管理用户对话数据、创建事实记录和捕获基于偏好的记忆。通过其直观的“添加”和“搜索”接口，用户可以轻松存储和检索所需信息。
+MemOS 是一个面向 AI 应用的记忆管理操作系统，让 AI 应用像人一样拥有长期记忆，不仅能记住用户说过的话，还能主动调用、更新和调度这些记忆。
+本插件支持 Dify 应用连接 MemOS 云服务，开发者通过核心操作「添加（Add）」和「搜索（Search）」接口，可以轻松实现记忆数据的读写与管理。
 
-## 特性
-*   **存储用户对话数据:** 当输入原始对话内容时，MemOS 系统会自动生成相关的事实记忆和用户偏好记录，并将其存储在数据库中。
-*   **检索用户数据:** 当输入用户查询时，MemOS 系统会根据输入内容搜索所有相关的事实记忆和偏好记录，并将结果返回给用户。
+## 核心接口
+在使用大模型构建应用时，一个常见问题是：如何让 AI 记住用户的长期偏好？
+MemOS 提供了两个核心接口帮助你实现：
+● **addMessage** —— 把原始对话交给我们，我们自动加工并存储记忆；
+● **searchMemory** —— 在后续对话中召回记忆，让 AI 回答更贴近用户需求。
 
-## 设置
-
-[MemOS](https://github.com/MemTensor/MemOS) 是开源的，允许您部署自己的实例。
-
-要使用此插件，您需要在 Dify 中添加它时提供与 **您的** MemOS 实例对应的以下凭据：
-
-1.  **MemOS URL:** **您的** MemOS 实例的端点 URL（例如，`https://memos.memtensor.cn/api/openmem/v1`）。
-2.  **MemOS API Key:** 用于验证 **您的** MemOS 实例的 **您的** API 密钥。（格式：必须是 Token mpg-************** 的格式。前缀 "Token" 是必需的。）
-
-您可以从您的 [MemOS API 控制台](https://memos-dashboard.openmem.net/apikeys/) 或配置中获取这些信息。
-![MemOS API console](/_assets/memos_console.svg)
-
+# 插件配置
+要使用此插件，您需要在 Dify 中填写以下配置信息：
+1. **MemOS URL**：MemOS云服务端点 URL https://memos.memtensor.cn/api/openmem/v1。
+2. **MemOS API Key**：您可以从您的 [MemOS API 控制台](https://memos-dashboard.openmem.net/cn/apikeys/) 或配置中获取接口密钥。
 
 ## 用法
-
-一旦配置了您的 MemOS 实例的详细信息，MemOS 工具将在 Dify 编排界面中可用。
-
-您可以将这些工具添加到您的工作流中，以：
-
-1. **自动保存记忆:** 将“添加记忆”工具集成到您的对话流程中，以便在每次交互后自动创建并存储事实摘要和用户偏好。这确保了用户的长期上下文持续更新。
-
-2. **上下文感知响应:** 在工作流开始时使用“搜索记忆”工具。通过在生成响应之前检索相关的过去交互和用户偏好，您可以使您的 AI 应用程序提供高度个性化和上下文相关的答案。
-
-3. **构建复杂的记忆逻辑:** 将“添加”和“搜索”工具与 Dify 中的其他节点链接起来，以创建复杂的逻辑。例如，您可以首先搜索现有的记忆以避免重复，或者仅在对话中检测到特定类型的信息时才有条件地添加新记忆。
-
-有关如何使用该工具的具体说明，您可以参考 [MemOS API 参考](https://memos-docs.openmem.net/dashboard/api/overview/)。
-
+配置完以上信息，您可在 Dify 编排界面中使用 MemOS 。以下是接口参数：
+（列举一下现在插件的输入输出参数，参考下面的表格）
+![](https://cdn.memtensor.com.cn/img/1767863640064_sgfhsv_compressed.png)
+您可以将这些工具添加到您的工作流中，实现以下功能：
+1. **自动保存记忆**：在每次交互后自动创建并存储事实摘要和用户偏好，确保用户的长期上下文持续更新。
+2. **上下文感知响应**：在每次聊天时检索记忆，为您的 AI 应用提供高度个性化和上下文相关的答案。
+3. **构建复杂的记忆逻辑**: 将“添加”和“搜索”工具与 Dify 中的其他节点链接起来，以创建复杂的逻辑。
+有关如何使用该工具的具体说明，您可以参考 [MemOS API 参考](https://memos-docs.openmem.net/cn)。
 
 ## 工作流示例
-
 对于需要记录对话数据并提取相关记忆的情况，您可以构建以下工作流：
-
-![MemOS workflow](/_assets/memos_workflow.svg)(/_assets/memory_assistant.yml)
+![](https://cdn.memtensor.com.cn/img/1767863857551_2dael7_compressed.png)

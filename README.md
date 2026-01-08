@@ -1,52 +1,51 @@
-# memos
+# MemOS
 
+**Repository:** [MemOS](https://github.com/whipser030/dify-plugin-memos)
 
-**Repository:** [dify-plugin-memos](https://github.com/whipser030/dify-plugin-memos)
+**Author:** MemTensor
 
-**Author:** memtensor
+**Version:** 0.0.3
 
-**Version:** 0.0.2
-
-**Type:** tool
+**Type:** Tool
 
 ## Description
 
-The MemOS plugin allows Dify applications to connect and interact with a user's **self-hosted or managed MemOS instance**. MemOS is an open-source long-term memory plugin designed for AI applications. It provides robust tools for managing user conversation data, creating factual records, and capturing preference-based memories. Through its intuitive "add" and "search" interfaces, users can effortlessly store and retrieve information as needed.
+MemOS is a memory management operating system for AI applications. It gives AI apps human-like long-term memory: not only remembering what users said, but also proactively calling, updating, and orchestrating those memories.
 
-## Features
-*   **Storage of User Dialogue Data:** When raw conversation content is input, the MemOS system automatically generates relevant factual memories and records of user preferences, which are then stored in the database.
-*   **Retrieval of User Data:** When a user query is input, the MemOS system searches all related factual memories and preference records based on the input and returns the results to the user.
+This plugin enables Dify applications to connect to the MemOS cloud service. With the two core operations—Add and Search—developers can easily read, write, and manage memory data.
 
-## Setup
+## Core APIs
 
-[MemOS](https://github.com/MemTensor/MemOS) is open-source, allowing you to deploy your own instance.
+When building applications with large language models, a common question is: how can an AI remember a user's long-term preferences?
 
-To use this plugin, you need to provide the following credentials when adding it in Dify, corresponding to **your** MemOS instance:
+MemOS provides two core APIs to help:
 
-1.  **MemOS URL:** The endpoint URL of **your** MemOS instance (e.g., `https://memos.memtensor.cn/api/openmem/v1`).
-2.  **MemOS API Key:** **Your** API key for authenticating with **your** MemOS instance.(Format: Must be in the format Token mpg-**************. The prefix "Token" is required.)
+● **addMessage** —— Hand us the raw conversation, and we automatically process it and store memories;
+● **searchMemory** —— Recall memories in later conversations so the AI responds closer to user needs.
 
-You can obtain these from your [MemOS API Console](https://memos-dashboard.openmem.net/apikeys/) or configuration.
-![MemOS API console](/_assets/memos_console.svg)
+# Plugin Configuration
 
+To use this plugin, you need to fill in the following configuration in Dify:
+
+1. **MemOS URL**：MemOS cloud service endpoint URL https://memos.memtensor.cn/api/openmem/v1。
+2. **MemOS API Key**：You can obtain the API key from your [MemOS API Console](https://memos-dashboard.openmem.net/cn/apikeys/) or configuration.
 
 ## Usage
 
-Once configured with the details of your MemOS instance, the MemOS tools will be available within the Dify orchestration interface.
+After completing the configuration above, you can use MemOS in the Dify orchestration interface. The interface parameters are:
 
-You can add these tools to your workflows to:
+(List the current tool input/output parameters here, referring to the table below.)
+![](https://cdn.memtensor.com.cn/img/1767863640064_sgfhsv_compressed.png)
 
-1. **Automatically Save Memories:** Integrate the "Add Memory" tool into your conversation flow to automatically create and store factual summaries and user preferences after each interaction.  This ensures the user's long-term context is continuously updated.
+You can add these tools to your workflow to achieve:
 
-2. **Context-Aware Responses:** Use the "Search Memories" tool at the beginning of a workflow.  By retrieving relevant past interactions and user preferences before generating a response, you empower your AI application to deliver highly personalized and contextually relevant answers.
+1. **Automatically Save Memories**：Automatically create and store factual summaries and user preferences after each interaction, ensuring the user's long-term context is continuously updated.
+2. **Context-Aware Responses**：Retrieve memories during each chat to provide highly personalized and contextually relevant answers for your AI application.
+3. **Build Complex Memory Logic**: Link the "Add" and "Search" tools with other nodes in Dify to create complex logic.
 
-3. **Build Complex Memory Logic:** Chain the "Add" and "Search" tools with other nodes in Dify to create sophisticated logic.  For example, you can first search for existing memories to avoid duplicates, or conditionally add new memories only when specific types of information are detected in the dialogue.
-
-For specific instructions on how to use the tool, you can refer to the [MemOS API Reference](https://memos-docs.openmem.net/dashboard/api/overview/).
-
+For specific instructions on how to use the tool, you can refer to the [MemOS API Reference](https://memos-docs.openmem.net/cn)。
 
 ## Workflow Example
 
-For situations that require recording dialogue data and extracting relevant memories, you can construct the following workflow:
-
-![MemOS workflow](/_assets/memos_workflow.svg)(/_assets/memory_assistant.yml)
+For scenarios where you need to record conversation data and extract relevant memories, you can build the following workflow:
+![](https://cdn.memtensor.com.cn/img/1767863857551_2dael7_compressed.png)
