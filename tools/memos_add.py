@@ -33,13 +33,11 @@ class MemosAdd(Tool):
         iso_date, conversation_id_new = self._get_conversation_id()
         if conversation_id is None:
             conversation_id = conversation_id_new
-
-        try:
-            messages = json.loads(tool_parameters["messages"])
-            if not isinstance(messages, list):
-                 raise ValueError("Not a list")
-        except (json.JSONDecodeError, ValueError, TypeError):
-             messages = [{"role": "user", "content": str(tool_parameters["messages"])}]
+            
+        messages = [
+          {"role": "user", "content": str(tool_parameters.get("user_messages", ""))},
+          {"role": "assistant", "content": str(tool_parameters.get("ai_messages", ""))}
+        ]
 
         for item in messages:
             if "chat_time" not in item:

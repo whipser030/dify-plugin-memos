@@ -32,16 +32,27 @@ parameters:
       zh_Hans: "对话的唯一标识符。"
     llm_description: "Unique identifier of the conversation."
     form: llm
-  - name: messages
+  - name: user_messages
     type: string
     required: true
     label:
-      en_US: messages
-      zh_Hans: 对话信息
+      en_US:  user_messages
+      zh_Hans: 用户输入信息
     human_description:
-      en_US: "Content of the message."
-      zh_Hans: "消息的内容。"
-    llm_description: "Content of the message."
+      en_US: "Content of the user message."
+      zh_Hans: "用户输入消息的内容。"
+    llm_description: "Content of the user message."
+    form: llm
+  - name: ai_messages
+    type: string
+    required: true
+    label:
+      en_US: ai_messages
+      zh_Hans: 模型回复信息
+    human_description:
+      en_US: "Content of the ai reply message."
+      zh_Hans: "模型回复消息的内容。"
+    llm_description: "Content of the ai reply message."
     form: llm
 extra:
   python:
