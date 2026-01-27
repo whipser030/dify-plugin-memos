@@ -64,7 +64,7 @@ plugins:
 
 # Runtime metadata
 meta:
-  version: 0.0.3               # Manifest format version
+  version: 0.0.4               # Manifest format version
   arch:
     - amd64
     - arm64
