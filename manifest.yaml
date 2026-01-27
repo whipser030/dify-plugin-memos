@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 type: plugin
 author: memtensor
 name: memos
@@ -36,7 +36,7 @@ plugins:
   tools:
     - provider/memos.yaml
 meta:
-  version: 0.0.3
+  version: 0.0.4
   arch:
     - amd64
     - arm64
